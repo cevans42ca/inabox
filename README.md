@@ -1,10 +1,10 @@
 # Motivation
 
-> Where is X?
+> `Where is X?`
 > 
-> In a box.
+> `In a box.`
 > 
-> Which one?
+> `Which one?`
 > 
 > `* Shrug *`
 
