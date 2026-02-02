@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: inabox
+  config:
+    import:
+      - "optional:file:${MONGODB_CONFIG_PATH}"
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: USER,ADMIN # Optional: specify roles as a comma-separated list
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: inabox
+      uri: ${custom.mongo.uri}
+      authentication-database: inabox
+logging:
+  level:
+    org.mongodb.driver.protocol.command: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
