@@ -11,3 +11,5 @@
 # Overview
 
 This project aims to help keep track of things in boxes (or other kinds of containers).
+
+Work on it has barely begun.
