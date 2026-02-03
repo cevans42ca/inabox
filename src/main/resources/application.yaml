@@ -1,3 +1,6 @@
+server:
+  port: 8080
+  address: 0.0.0.0
 spring:
   application:
     name: inabox
@@ -8,11 +11,13 @@ spring:
     user:
       name: admin
       password: ${custom.admin.password}
-      roles: USER,ADMIN # Optional: specify roles as a comma-separated list
-  # Moved entirely out of 'data' to satisfy Spring Boot 4 & Eclipse
+      roles: USER,ADMIN
   mongodb:
     uri: ${custom.mongo.uri}
+#  web:
+#    error:
+#      include-message: always
 logging:
   level:
-    '[org.mongodb.driver.protocol.command]': DEBUG
-    '[org.springframework.data.mongodb.core.MongoTemplate]': DEBUG
+    '[org.mongodb.driver.protocol.command]': INFO
+    '[org.springframework.data.mongodb.core.MongoTemplate]': INFO
