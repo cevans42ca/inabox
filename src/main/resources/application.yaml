@@ -9,13 +9,9 @@ spring:
       name: admin
       password: ${custom.admin.password}
       roles: USER,ADMIN # Optional: specify roles as a comma-separated list
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: inabox
-      uri: ${custom.mongo.uri}
-      authentication-database: inabox
+  # Moved entirely out of 'data' to satisfy Spring Boot 4 & Eclipse
+  mongodb:
+    uri: ${custom.mongo.uri}
 logging:
   level:
     '[org.mongodb.driver.protocol.command]': DEBUG
