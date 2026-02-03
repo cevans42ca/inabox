@@ -38,7 +38,7 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
-				// 1. Surgical CSRF: Ignore it only if the request is from the local network
+				// 1. Ignore CSRF only if the request is from the local network
 				.csrf(csrf -> csrf.ignoringRequestMatchers(this::isLocalNetwork))
 
 				// 2. Authorization: All requests still require a Basic Auth header
@@ -51,15 +51,10 @@ public class SecurityConfig {
 	}
 
 	private boolean isLocalNetwork(HttpServletRequest request) {
-		// 1. Always check localhost.
 		boolean isLocalhost = localhostV4.matches(request) || localhostV6.matches(request);
 
-		// 2. Only check the CIDR matcher if it was actually initialized.
-		if (subnetMatcher != null) {
-			return isLocalhost || subnetMatcher.matches(request);
-		}
-
-		return isLocalhost;
+		// Only check the CIDR matcher if it was initialized.
+		return isLocalhost || (subnetMatcher != null && subnetMatcher.matches(request));
 	}
 
 }
