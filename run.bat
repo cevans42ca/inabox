@@ -11,8 +11,9 @@ IF EXIST ".env" (
     echo .env file not found.
     echo.
     echo Create a .env file with the following contents.
-    echo MONGODB_CONFIG_PATH=C:/Users/YourUserId/Documents/EnvVars/mongodb-secrets.properties
+    echo SECRETS_CONFIG_PATH=C:/Users/YourUserId/Documents/EnvVars/secrets.properties
     echo.
-    echo This properties file should contain your URI with password.
+    echo This properties file should contain your URI with password and the admin password.
     echo custom.mongo.uri=mongodb://myTestUser:myPassword@localhost:27017/inabox?authSource=inabox
+    echo custom.admin.password=adminPassword
 )

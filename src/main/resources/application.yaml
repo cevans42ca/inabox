@@ -3,11 +3,11 @@ spring:
     name: inabox
   config:
     import:
-      - "optional:file:${MONGODB_CONFIG_PATH}"
+      - "optional:file:.env"
   security:
     user:
       name: admin
-      password: admin
+      password: ${custom.admin.password}
       roles: USER,ADMIN # Optional: specify roles as a comma-separated list
   data:
     mongodb:
