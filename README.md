@@ -19,3 +19,5 @@ The plan is to have a JSON service that an iPhone with Siri and Shortcuts can in
 # Getting Started
 
 Copy env.template in the root of the project to .env and update it with your DB settings and desired admin password.  Run it with mvnw spring-boot:run.
+
+If you want to allow iPhones or other devices on your local network to use the REST endpoints directly, with apps like Shortcuts, see ca.quines.inabox.security.SecurityConfig.
