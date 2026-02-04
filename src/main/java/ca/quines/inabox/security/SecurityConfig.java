@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Configuration
 @EnableWebSecurity
+/**
+ * {@see #SecurityConfig(String)}
+ */
 public class SecurityConfig {
 
 	private final IpAddressMatcher subnetMatcher;

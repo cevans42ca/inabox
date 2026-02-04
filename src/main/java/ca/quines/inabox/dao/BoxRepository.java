@@ -11,6 +11,7 @@ import ca.quines.inabox.dto.Box;
 public interface BoxRepository extends MongoRepository<Box, String> {
 
 	public Box findByName(String name);
+	public List<Box> findByPhonetic(String phoneticSearch);
 	public List<Box> findByLocation(String location);
 	List<Box> findTop10ByOrderByIdDesc();
 	

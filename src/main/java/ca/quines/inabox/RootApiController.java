@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.quines.inabox.dao.BoxRepository;
 import ca.quines.inabox.dto.Box;
 import ca.quines.inabox.dto.TextRequest;
+import ca.quines.inabox.util.PhoneticSearchUtil;
 
 @RestController
 @RequestMapping("/api")
@@ -22,6 +23,9 @@ public class RootApiController {
 
 	@Autowired
 	private BoxRepository repository;
+
+	@Autowired
+	private PhoneticSearchUtil phoneticSearchUtil;
 
 	@GetMapping("/overview")
 	public List<Box> overview() {
@@ -32,6 +36,12 @@ public class RootApiController {
 	@PostMapping("/getBoxByName")
 	public Box getBoxByName(@Validated @RequestBody TextRequest request) {
 		return repository.findByName(request.content());
+	}
+
+	@PostMapping("/getBoxByPhonetic")
+	public List<Box> getBoxByPhonetic(@Validated @RequestBody TextRequest request) {
+		List<Box> boxes = repository.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
+		return boxes;
 	}
 
 }
