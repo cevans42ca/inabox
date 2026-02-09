@@ -1,16 +1,19 @@
-package ca.quines.inabox.helper;
+package ca.quines.inabox.helper.content;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import ca.quines.inabox.dto.Box;
+
 @Service
-public class EnglishHelper {
+public class EnglishHelper implements ContentHelperService {
 
 	/**
-	 * Returns a comma-separated list for text to speech.  The given list is modified.
+	 * Returns a comma-separated list for text to speech.
 	 * 
 	 * @param list
 	 * @return
@@ -28,7 +31,11 @@ public class EnglishHelper {
 		return list.isEmpty() ? "" : list.get(0);
 	}
 
-	public <T> String listToSentence(List<T> list, String labelOne, String labelMany,
+	public String matchBoxListToSentence(List<Box> boxes) {
+		return matchListToSentence(boxes, "box", "boxes", Box::getName, Box::getLocation);
+	}
+
+	public <T> String matchListToSentence(List<T> list, String labelOne, String labelMany,
 			Function<T, String> fieldExtractor, Function<T, String> locationExtractor)
 	{
 		if (list.size() == 0) {
@@ -49,6 +56,11 @@ public class EnglishHelper {
 		else {
 			return "I found " + list.size() + " " + labelMany + ".  Please try a more specific name.";
 		}
+	}
+
+	@Override
+	public boolean supports(Locale locale) {
+		return locale.getLanguage().equals("en");
 	}
 
 }

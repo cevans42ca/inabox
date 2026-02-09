@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ca.quines.inabox.dao.BoxRepository;
 import ca.quines.inabox.dto.Box;
 import ca.quines.inabox.dto.TextRequest;
-import ca.quines.inabox.helper.EnglishHelper;
+import ca.quines.inabox.helper.content.ContentHelperService;
+import ca.quines.inabox.helper.content.ContentServiceProvider;
 import ca.quines.inabox.util.PhoneticSearchUtil;
 
 @RestController
@@ -26,10 +27,10 @@ public class RootApiController {
 	private BoxRepository repository;
 
 	@Autowired
-	private EnglishHelper englishHelper;
+	private PhoneticSearchUtil phoneticSearchUtil;
 
 	@Autowired
-	private PhoneticSearchUtil phoneticSearchUtil;
+	private ContentServiceProvider contentServiceProvider;
 
 	@GetMapping("/overview")
 	public List<Box> overview() {
@@ -45,7 +46,8 @@ public class RootApiController {
 	@PostMapping(value = "/getBoxByPhonetic", produces = {"text/plain"})
 	public String getBoxByPhoneticJson(@Validated @RequestBody TextRequest request) {
 		List<Box> boxes = repository.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
-		return englishHelper.listToSentence(boxes, "box", "boxes", Box::getName, Box::getLocation);
+		ContentHelperService service = contentServiceProvider.getService();
+		return service.matchBoxListToSentence(boxes);
 	}
 
 	@PostMapping(value = "/getBoxByPhonetic", produces = {"application/json"})

@@ -11,6 +11,7 @@ import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTe
 import org.springframework.boot.test.context.SpringBootTest;
 
 import ca.quines.inabox.dto.Box;
+import ca.quines.inabox.helper.content.EnglishHelper;
 
 @SpringBootTest
 @AutoConfigureRestTestClient
@@ -59,7 +60,7 @@ class EnglishHelperTest {
 		List<Box> list = new ArrayList<>();
 
 		assertEquals("No matching boxes found.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 	@Test
@@ -71,7 +72,7 @@ class EnglishHelperTest {
 		list.add(box);
 
 		assertEquals("I found one box with the name Miscellaneous 1.  It's in the Upside Down.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 	@Test
@@ -89,7 +90,7 @@ class EnglishHelperTest {
 		list.add(box);
 
 		assertEquals("I found 2 boxes:  Miscellaneous 1 and Miscellaneous 2.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 	@Test
@@ -104,7 +105,7 @@ class EnglishHelperTest {
 		}
 
 		assertEquals("I found 3 boxes:  Miscellaneous 1, Miscellaneous 2 and Miscellaneous 3.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 	@Test
@@ -119,7 +120,7 @@ class EnglishHelperTest {
 		}
 
 		assertEquals("I found 4 boxes:  Miscellaneous 1, Miscellaneous 2, Miscellaneous 3 and Miscellaneous 4.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 	@Test
@@ -134,7 +135,7 @@ class EnglishHelperTest {
 		}
 
 		assertEquals("I found 5 boxes.  Please try a more specific name.",
-				englishHelper.listToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
+				englishHelper.matchListToSentence(list, "box", "boxes", Box::getName, Box::getLocation));
 	}
 
 }
