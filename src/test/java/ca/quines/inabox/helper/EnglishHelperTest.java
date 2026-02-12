@@ -24,35 +24,35 @@ class EnglishHelperTest {
 	void testListToPhraseEmpty() {
 		List<String> list = new ArrayList<>();
 
-		assertEquals("", englishHelper.listToPhrase(list));
+		assertEquals("", englishHelper.listToPhrase(list, ", ", " and "));
 	}
 
 	@Test
 	void testListToPhraseOneItem() {
 		List<String> list = List.of("one");
 
-		assertEquals("one", englishHelper.listToPhrase(list));
+		assertEquals("one", englishHelper.listToPhrase(list, ", ", " and "));
 	}
 
 	@Test
 	void testListToPhraseTwoItems() {
 		List<String> list = List.of("one", "two");
 
-		assertEquals("one and two", englishHelper.listToPhrase(list));
+		assertEquals("one and two", englishHelper.listToPhrase(list, ", ", " and "));
 	}
 
 	@Test
 	void testListToPhraseThreeItems() {
 		List<String> list = List.of("one", "two", "three");
 
-		assertEquals("one, two and three", englishHelper.listToPhrase(list));
+		assertEquals("one, two and three", englishHelper.listToPhrase(list, ", ", " and "));
 	}
 
 	@Test
 	void testListToPhraseFourItems() {
 		List<String> list = List.of("one", "two", "three", "four");
 
-		assertEquals("one, two, three and four", englishHelper.listToPhrase(list));
+		assertEquals("one, two, three and four", englishHelper.listToPhrase(list, ", ", " and "));
 	}
 
 	@Test

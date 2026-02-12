@@ -21,6 +21,7 @@ public class ContentServiceProvider {
 				.filter(s -> s.supports(currentLocale))
 				.findFirst()
 				.orElse(services.get(0)); // Fallback to default
+		// For notes on fallback, see the class notes on ca.quines.inabox.helper.content.EnglishHelper.
 	}
 
 }
