@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: space-between; /* Pushes items to the ends of the container */
+  align-items: center; /* Vertically centers items if the container has a defined height */
+  width: 100%; /* Ensures container takes full width */
+}
+
+.centered-text {
+  /* This text will be in the *approximate* center, as 'space-between' puts even space 
+  between the two div elements, which will optically center the first div */
+  text-align: center;
+  flex-grow: 1; /* Allows the centered text div to grow and occupy available space */
+}
+
+.right-aligned-text {
+  text-align: right;
+}
