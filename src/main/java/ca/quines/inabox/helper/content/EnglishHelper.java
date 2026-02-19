@@ -13,6 +13,8 @@ import ca.quines.inabox.dto.Box;
 
 /**
  * Convert match results to full English sentences, to be read by the client's text to speech capabilities.
+ * We're doing more than we normally would in the back end to make the front end easy to set up (a simple iOS
+ * Shortcut or equivalent).
  * 
  * Use the @Order annotation to make the instance of this class the one first in any list we create so that we can
  * use the first item as the default.  See {@link ContentServiceProvider#getService}.
