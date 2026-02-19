@@ -15,3 +15,60 @@
 .right-aligned-text {
   text-align: right;
 }
+
+.bankers-box {
+  display: inline-block;
+  min-width: 300px;
+  background-color: #dbc9a7; /* Deeper cardboard tone */
+  border: 2px solid #5d4037;
+  padding: 0 15px 20px 15px; /* Padding for the body content */
+  position: relative;
+  margin: 20px; /* Space around the box so the overhang is visible */
+}
+
+.box-lid {
+  height: 40px;
+  background-color: #eaddca;
+  border: 2px solid #5d4037;
+  border-bottom: 5px solid #bda88e; /* Thick bottom lip */
+  
+  /* The Overhang */
+  margin-left: -30px;  /* Pulls left past the box padding */
+  margin-right: -30px; /* Pulls right past the box padding */
+  width: calc(100% + 60px); /* Ensures it stays wide */
+  
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Lid casts a shadow on the box */
+}
+
+.label-area {
+  border: 2px solid #333;
+  padding: 15px;
+  margin: 10px;
+  background-color: white;
+  min-height: 100px;
+}
+
+.dynamic-text {
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.box-body {
+  padding-top: 50px; /* Space so the lid/handle don't crowd the text */
+  position: relative;
+}
+
+/* Hole / Handle */
+.box-body::after {
+  content: "";
+  position: absolute;
+  top: 10px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 25px;
+  background-color: #3e2723;
+  border-radius: 12px;
+}
