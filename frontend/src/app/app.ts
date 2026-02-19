@@ -22,7 +22,7 @@ import { LanguageService } from './services/language-service';
             <div class="box-lid"></div>
             <div class="box-body">
               <div class="label-area">
-                <p>Box Name</p>
+                <div class="box-name">Box Name</div>
                 <div class="dynamic-text" contenteditable="true">
                   Contains 42 items
                 </div>
