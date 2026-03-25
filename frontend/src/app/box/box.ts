@@ -7,11 +7,18 @@ import { BoxDto } from "../box-dto"
   selector: 'app-box',
   imports: [I18nPluralPipe],
   template: `
-    <section class="box">
-      <span class="box-name">{{ boxDto.name }}</span><br>
-      <span class="box-item-count">{{ boxDto.itemCount | i18nPlural: langService.getMapping() }}</span><br>
-      <span class="box-location">{{ boxDto.location }}</span>
-    </section>
+      <div class="bankers-box">
+        <div class="box-lid"></div>
+        <div class="box-body">
+          <div class="label-area">
+            <div class="box-name">{{ boxDto.name }}</div>
+            <div class="dynamic-text">
+              {{ boxDto.itemCount | i18nPlural: langService.getMapping() }}<br>
+              {{ boxDto.location }}
+            </div>
+          </div>
+        </div>
+      </div>
   `,
   styleUrl: './box.css',
 })

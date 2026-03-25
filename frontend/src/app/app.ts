@@ -18,17 +18,6 @@ import { LanguageService } from './services/language-service';
             </div>
         </header>
         <section class="content">
-          <div class="bankers-box">
-            <div class="box-lid"></div>
-            <div class="box-body">
-              <div class="label-area">
-                <div class="box-name">Box Name</div>
-                <div class="dynamic-text" contenteditable="true">
-                  Contains 42 items
-                </div>
-              </div>
-            </div>
-          </div>
           <app-outer-box [boxList]="boxList"></app-outer-box>
         </section>
     </main>
@@ -42,6 +31,30 @@ export class App {
         {
             "id": 1,
             "name": "Miscellaneous 1",
+            "itemCount": 42,
+            "location": "Upside Down"
+        },
+        {
+            "id": 2,
+            "name": "Miscellaneous 2",
+            "itemCount": 42,
+            "location": "Upside Down"
+        },
+        {
+            "id": 3,
+            "name": "Miscellaneous 3",
+            "itemCount": 42,
+            "location": "Upside Down"
+        },
+        {
+            "id": 4,
+            "name": "Miscellaneous 4",
+            "itemCount": 42,
+            "location": "Upside Down"
+        },
+        {
+            "id": 5,
+            "name": "Miscellaneous 5",
             "itemCount": 42,
             "location": "Upside Down"
         }

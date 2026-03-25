@@ -12,7 +12,7 @@ import { BoxDto } from "../box-dto"
         <button class="primary" type="button">Search</button>
       </form>
     </section>
-	<section class="results">
+	<section class="grid-container">
 	  @for (boxDto of boxList; track boxDto.id) {
 	    <app-box [boxDto]="boxDto"></app-box>
 	  }
