@@ -22,7 +22,7 @@ import ca.quines.inabox.util.PhoneticSearchUtil;
 public class ApiController {
 
 	@Autowired
-	private BoxService repository;
+	private BoxService boxService;
 
 	@Autowired
 	private PhoneticSearchUtil phoneticSearchUtil;
@@ -33,24 +33,24 @@ public class ApiController {
 	@GetMapping("/overview")
 	public List<Box> overview() {
 		// Last 10 boxes inserted into the DB, by ID.
-		return repository.findTop10ByOrderByIdDesc();
+		return boxService.findTop10ByOrderByIdDesc();
 	}
 
 	@PostMapping("/getBoxByName")
 	public Box getBoxByName(@Validated @RequestBody TextRequest request) {
-		return repository.findByName(request.content());
+		return boxService.findByName(request.content());
 	}
 
 	@PostMapping(value = "/getBoxByPhonetic", produces = {"text/plain"})
 	public String getBoxByPhoneticJson(@Validated @RequestBody TextRequest request) {
-		List<Box> boxes = repository.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
+		List<Box> boxes = boxService.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
 		ContentHelperService service = contentServiceProvider.getService();
 		return service.matchBoxListToSentence(boxes);
 	}
 
 	@PostMapping(value = "/getBoxByPhonetic", produces = {"application/json"})
 	public List<Box> getBoxByPhoneticText(@Validated @RequestBody TextRequest request) {
-		return repository.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
+		return boxService.findByPhonetic(phoneticSearchUtil.normalize(request.content()));
 	}
 
 }
