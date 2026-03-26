@@ -7,6 +7,9 @@ import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Computes Base 64 Strings for HTTP Basic Authentication, ensuring no external services are used for that.
+ */
 public class SecurityHelper {
 
 	public static void main(String[] args) {
