@@ -1,9 +1,14 @@
 package ca.quines.inabox.helper;
 
 import org.apache.commons.codec.language.DoubleMetaphone;
+import org.junit.jupiter.api.Test;
 
-public class PhoneticSearcher {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class PhoneticSearcherTest {
+
+	@Test
 	private static void phoneticWithWords() {
 		DoubleMetaphone engine = new DoubleMetaphone();
 
@@ -14,14 +19,14 @@ public class PhoneticSearcher {
 		String code1 = engine.encode(original);
 		String code2 = engine.encode(userInput);
 
-		System.out.println("Code 1: " + code1); // Output: NT
-		System.out.println("Code 2: " + code2); // Output: NT
+		// Verification
+		assertEquals("NT", code1);
+		assertEquals("NT", code2);
 
-		if (engine.isDoubleMetaphoneEqual(original, userInput)) {
-			System.out.println("Match found! The words sound the same.");
-		}
+		assertTrue(engine.isDoubleMetaphoneEqual(original, userInput));
 	}
 
+	@Test
 	private static void phoneticWithNumbers() {
 		DoubleMetaphone engine = new DoubleMetaphone();
 
@@ -32,12 +37,11 @@ public class PhoneticSearcher {
 		String code1 = engine.encode(original);
 		String code2 = engine.encode(userInput);
 
-		System.out.println("Code 1: " + code1); // Output: NT
-		System.out.println("Code 2: " + code2); // Output: NT
+		// Verification
+		assertEquals("NT", code1);
+		assertEquals("NT", code2);
 
-		if (engine.isDoubleMetaphoneEqual(original, userInput)) {
-			System.out.println("Match found! The words sound the same.");
-		}
+		assertTrue(engine.isDoubleMetaphoneEqual(original, userInput));
 	}
 
 	public static void main(String[] args) {

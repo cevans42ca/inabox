@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import ca.quines.inabox.dto.Box;
 
 
-public interface BoxRepository extends MongoRepository<Box, String> {
+public interface BoxService extends MongoRepository<Box, String> {
 
 	public Box findByName(String name);
 	public List<Box> findByPhonetic(String phoneticSearch);
