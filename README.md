@@ -14,7 +14,7 @@ This project is a way to (1) try out technologies and (2) reorganize our house. 
 
 Work on it has barely begun.
 
-The plan is to have a JSON service that an iPhone with Siri and Shortcuts can interact with, and a web UI.
+The plan is to have a JSON service that an iPhone with Siri and Shortcuts can interact with, and a web UI. Details about the available REST endpoints can be found in [CONTROLLER_DOCUMENTATION.md](CONTROLLER_DOCUMENTATION.md).
 
 # Getting Started
 
