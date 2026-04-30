@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.client.RestTestClient;
 
 @SpringBootTest
 @AutoConfigureRestTestClient
-public class HelloControllerIntegrationTest {
+public class RootControllerIntegrationTest {
 
 	@Autowired
 	private RestTestClient restTestClient;
@@ -23,12 +23,12 @@ public class HelloControllerIntegrationTest {
 		// Any credentials will authenticate with the test server.
 		String basicAuth = "Basic " + Base64.getEncoder().encodeToString("foo:bar".getBytes());
 
-	    restTestClient.get().uri("/hello")
+	    restTestClient.get().uri("/")
 	        .header(HttpHeaders.AUTHORIZATION, basicAuth)
 	        .exchange()
 	        .expectStatus().isOk()
 	        .expectBody(String.class).consumeWith(result -> {
-	        	assertTrue(result.getResponseBody().contains("Greetings"));
+	        	assertTrue(result.getResponseBody().contains("root page"));
 	        });
 	}
 

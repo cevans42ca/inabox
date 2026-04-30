@@ -18,19 +18,19 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+public class RootControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(get("/hello")
+    public void getRoot() throws Exception {
+        mvc.perform(get("/")
         		// Simulate an authenticated user (doesn't need to match the config).
 		        .with(user("yourUsername").password("yourPassword")) 
 		        .accept(MediaType.APPLICATION_JSON))
 		    .andExpect(status().isOk())
-		    .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+		    .andExpect(content().string(equalTo("The root page goes here.")));
   }
 
 }
