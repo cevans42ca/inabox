@@ -41,12 +41,23 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
+				// Ensure this filter chain applies to all requests
+				.securityMatcher("/**")
 				// 1. Ignore CSRF only if the request is from the local network
 				.csrf(csrf -> csrf.ignoringRequestMatchers(this::isLocalNetwork))
-
-				// 2. Authorization: All requests still require a Basic Auth header
-				.authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-
+				
+				// 2. Authorization rules
+				.authorizeHttpRequests(auth -> auth
+						// Root endpoint remains open (used by simple health/info page)
+						.requestMatchers("/").permitAll()
+						// All API endpoints must be authenticated
+						.requestMatchers("/api/**").authenticated()
+						// Any other endpoints require authentication too
+						.anyRequest().authenticated())
+				
+				// Disable anonymous authentication to ensure 401 when no credentials are provided
+				.anonymous(anon -> anon.disable())
+				
 				// 3. Authentication: Enable Basic Auth security
 				.httpBasic(Customizer.withDefaults());
 
