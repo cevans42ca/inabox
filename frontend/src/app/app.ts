@@ -1,11 +1,11 @@
 import { Component, signal, inject } from '@angular/core';
-import { OuterBox } from "./outer-box/outer-box";
-import { BoxDto } from "./box-dto";
+import { Router, RouterOutlet } from '@angular/router';
 import { LanguageService } from './services/language-service';
+import { AuthService } from './services/auth-service';
 
 @Component({
     selector: 'app-root',
-    imports: [OuterBox],
+    imports: [RouterOutlet],
     template: `
     <main>
         <header class="header">
@@ -14,12 +14,13 @@ import { LanguageService } from './services/language-service';
                 <div class="right-aligned-text">
                     <button (click)="langService.setLanguage('en')">EN</button>
                     <button (click)="langService.setLanguage('fr')">FR</button>
+                    @if (auth.isAuthenticated()) {
+                      <button (click)="onLogout()">Logout</button>
+                    }
                 </div>
             </div>
         </header>
-        <section class="content">
-          <app-outer-box [boxList]="boxList"></app-outer-box>
-        </section>
+        <router-outlet></router-outlet>
     </main>
   `,
     styleUrl: './app.css'
@@ -27,36 +28,18 @@ import { LanguageService } from './services/language-service';
 export class App {
     protected readonly title = signal('In a Box');
     protected readonly langService = inject(LanguageService);
-    boxList: BoxDto[] = [
-        {
-            "id": 1,
-            "name": "Miscellaneous 1",
-            "itemCount": 42,
-            "location": "Upside Down"
-        },
-        {
-            "id": 2,
-            "name": "Miscellaneous 2",
-            "itemCount": 42,
-            "location": "Upside Down"
-        },
-        {
-            "id": 3,
-            "name": "Miscellaneous 3",
-            "itemCount": 42,
-            "location": "Upside Down"
-        },
-        {
-            "id": 4,
-            "name": "Miscellaneous 4",
-            "itemCount": 42,
-            "location": "Upside Down"
-        },
-        {
-            "id": 5,
-            "name": "Miscellaneous 5",
-            "itemCount": 42,
-            "location": "Upside Down"
-        }
-    ];
+    protected readonly auth = inject(AuthService);
+    private readonly router = inject(Router);
+
+    constructor() {
+        // Optional diagnostic to observe initial auth state on app load
+        console.log('[DEBUG_LOG] App: initial isAuthenticated =', this.auth.isAuthenticated());
+    }
+
+    onLogout() {
+        console.log('[DEBUG_LOG] App: logout clicked');
+        this.auth.logout();
+        console.log('[DEBUG_LOG] App: isAuthenticated after logout =', this.auth.isAuthenticated());
+        this.router.navigate(["/login"]);
+    }
 }

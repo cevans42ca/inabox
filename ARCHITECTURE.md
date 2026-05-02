@@ -45,3 +45,16 @@ Currently centered around the **Box** entity:
 
 ## Security
 The application is designed for a single-user/household environment. It uses a simple admin-password-based security model for protecting the REST endpoints.
+
+### Frontend authentication (updated)
+- Previously, the web UI relied on the browser's built-in Basic Authentication prompt. The frontend now provides a first-class login page and logout action while the backend remains unchanged and continues to expect HTTP Basic Auth headers.
+- The Angular app implements:
+  - A Login form (`/login`) that collects username and password and verifies them with a lightweight authenticated request to the API.
+  - An AuthService that stores a Base64-encoded Basic token in `sessionStorage` for the current tab/session only. No persistence beyond the session is performed.
+  - An HTTP interceptor that automatically attaches the `Authorization: Basic <token>` header to all API requests once authenticated.
+  - A route guard that redirects unauthenticated users to `/login`.
+  - A Logout button in the header that clears credentials and navigates back to `/login`.
+
+Notes:
+- No backend changes were required; Spring Security continues to enforce Basic Auth for all endpoints as before.
+- Because credentials are kept in sessionStorage, closing the tab or browser session effectively logs the user out.
